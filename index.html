@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Batrisi All In One</title>
-    <link rel="manifest" href="manifest.json">
+    <!-- Manifest link removed to fix 404 error -->
     <meta name="theme-color" content="#000000">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -451,7 +451,7 @@
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     OneSignalDeferred.push(async function(OneSignal) {
         await OneSignal.init({
-            appId: "c63042ff-00b4-49f0-9307-74673692e9ac", // App ID integrated
+            appId: "c63042ff-00b4-49f0-9307-74673692e9ac", // Aapki App ID
             allowLocalhostAsSecureOrigin: true,
         });
     });
@@ -469,7 +469,6 @@
     }
 
     // ================= NOTIFICATION TRIGGERING (BACKEND CALL) =================
-    // Backend API Script. Ye Script ab FCM ki jagah OneSignal ka API hit karegi.
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyKv5Ma3XMQQvxXGlDmsgDXVg-gcGOizvpnCRQcK9M5jg-J5QgK2CyWin1rg9Emfqgifw/exec'; 
 
     async function triggerPush(target, title, body) {
