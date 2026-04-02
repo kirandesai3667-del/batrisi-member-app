@@ -448,13 +448,10 @@
     const db = firebase.firestore();
 
     // ================= ONESIGNAL PUSH INITIALIZATION =================
-    // Yaha apna OneSignal App ID daalein
-    const ONESIGNAL_APP_ID = "YOUR_ONESIGNAL_APP_ID_HERE"; 
-
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     OneSignalDeferred.push(async function(OneSignal) {
         await OneSignal.init({
-            appId: ONESIGNAL_APP_ID,
+            appId: "c63042ff-00b4-49f0-9307-74673692e9ac", // App ID integrated
             allowLocalhostAsSecureOrigin: true,
         });
     });
@@ -508,7 +505,7 @@
                 read: false,
                 deleted: false
             });
-            // Send actual Push
+            // Send actual Push via OneSignal
             triggerPush(userId, title, message); 
         } catch (error) {
             console.error("Error sending user notification:", error);
@@ -1270,7 +1267,6 @@
                     localStorage.setItem('sbj_user', JSON.stringify(userData));
                 }
 
-                // Update User Info in DB (Removed FCM logic, keeping lastActive)
                 const userRef = db.collection('users').doc(currentUser.id);
                 await userRef.set({
                     userId: currentUser.id,
@@ -1312,7 +1308,7 @@
         showToast("Loading latest data... ⏳");
         await fetchRequests(role);
         setupNotificationsListener(currentUser.id);
-        setupOneSignalUser(); // Start OneSignal Push Notification Setup
+        setupOneSignalUser(); // Call OneSignal login
 
         if (role === 'Admin') {
             document.getElementById('admin-name-display').innerText = currentUser.name;
